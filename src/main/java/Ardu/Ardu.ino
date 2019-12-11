@@ -4,6 +4,7 @@
 #define SDA_DIO 10  // 53 per Arduino Mega
 #define RESET_DIO 9
 #define delayRead 1000 // Time of delay 
+#define buzzerPin 4
  
 /* Viene creata una istanza della RFID libreria */
 RFID RC522(SDA_DIO, RESET_DIO);
@@ -28,6 +29,7 @@ void loop()
   // Se viene letta una tessera
   if (RC522.isCard())
   {
+    tone(buzzerPin, 3000, 500);
     // Viene letto il suo codice 
     RC522.readCardSerial();
     String codiceLetto ="";
