@@ -1,9 +1,6 @@
 package Arduino;
 
-import purejavacomm.CommPortIdentifier;
-import purejavacomm.PortInUseException;
-import purejavacomm.SerialPort;
-import purejavacomm.UnsupportedCommOperationException;
+import purejavacomm.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -21,8 +18,8 @@ public class Seriale {
     private final InputStream inputStream;
     private final OutputStream outputStream;
 
-    public Seriale() throws PortInUseException, IOException, UnsupportedCommOperationException {
-        port = selectSerialPort();
+    public Seriale() throws PortInUseException, IOException, UnsupportedCommOperationException, NoSuchPortException {
+        port = (SerialPort) CommPortIdentifier.getPortIdentifier("COM3").open("AAA",2000);//selectSerialPort();
         port.notifyOnDataAvailable(true);
         port.notifyOnOutputEmpty(true);
         port.setFlowControlMode(SerialPort.FLOWCONTROL_XONXOFF_IN + SerialPort.FLOWCONTROL_XONXOFF_OUT);
@@ -54,7 +51,7 @@ public class Seriale {
             scanner.nextLine();
         }
 
-        return (SerialPort) porte.get(scelta - 1).open("Stazione meteo", 2000);
+        return (SerialPort) porte.get(scelta - 1).open("Controllo accessi", 2000);
     }
 
 

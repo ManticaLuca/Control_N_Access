@@ -2,6 +2,7 @@ package Arduino;
 
 import Shared.Settings;
 import Shared.SocketUDP;
+import purejavacomm.NoSuchPortException;
 import purejavacomm.PortInUseException;
 import purejavacomm.SerialPortEvent;
 import purejavacomm.UnsupportedCommOperationException;
@@ -19,23 +20,26 @@ public class ArduoneMain {
 
         try {
             final Seriale seriale = new Seriale();
-            //new ReceiveThread(seriale).start();
-            SocketUDP socket = new SocketUDP();
+
+            //SocketUDP socket = new SocketUDP();
+            new ReceiveThread(seriale).start();
 
             //Aggiungo un event listener alla porta seriale in modo da sapere quando arrivano le richieste
             seriale.getPort().addEventListener(event -> {
                 if (event.getEventType() == SerialPortEvent.DATA_AVAILABLE) {
                     try {
                         String receive = seriale.receiveLine();
-                        System.out.println(receive);
                         if (!receive.equals(""))
-                            socket.sendString(receive, Settings.SERVER_ARDUINO_PORT, Settings.SERVER_IP);
+                            System.out.println(receive);
+                        //socket.sendString(receive, Settings.SERVER_ARDUINO_PORT, Settings.SERVER_IP);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
             });
-        } catch (PortInUseException | UnsupportedCommOperationException | IOException | TooManyListenersException e) {
+
+
+        } catch (PortInUseException | UnsupportedCommOperationException | IOException | TooManyListenersException | NoSuchPortException e) {
             e.printStackTrace();
         }
 
