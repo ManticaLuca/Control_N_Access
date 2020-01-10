@@ -39,3 +39,7 @@ Un programma in Java leggerà dalla seriale i dati inviati da Arduino e li salve
 
 ### Attuali ambiti di applicazione della soluzione proposta
 Ogni luogo che necessita di identificare il personale autorizzato all'accesso ad un'area riservata.
+
+
+
+![presentazione](/docs/presentazione.png)
