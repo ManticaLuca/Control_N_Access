@@ -54,9 +54,9 @@ void loop()
       delay(delayRead);
       digitalWrite(LED_ROSSO,HIGH);
       digitalWrite(LED_VERDE,LOW);
-    }else
+    }else{
       tone(buzzerPin, 5000, 500);
-    
-    delay(delayRead);
+      delay(delayRead);
+    }
   }
 }
