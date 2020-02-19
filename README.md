@@ -35,4 +35,4 @@ Ogni luogo che necessita di identificare il personale autorizzato all'accesso ad
 
 
 ![presentazione](/docs/presentazione.png)
-![ER](/docs/er.xml)
+![ER](/docs/er.png)
